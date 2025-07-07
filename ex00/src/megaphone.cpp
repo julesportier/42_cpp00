@@ -19,34 +19,24 @@ static void	print_str_default()
 
 static char	*to_upper_str(char *str)
 {
-	for (int i = 0; str[i] != '\0'; ++i)
-	{
+	for (int i = 0; str[i] != '\0'; ++i) {
 		str[i] = toupper(str[i]);
 	}
 	return (str);
 }
 
-static int	print_str_upper(char *str)
+static void	print_str_upper(char *str)
 {
-	str = to_upper_str(str);
-	if (!str)
-	{
-		return (-1);
-	}
-	std::cout << str;
-	return (0);
+	std::cout << to_upper_str(str);
 }
 
 int	main(int argc, char *argv[])
 {
-	if (argc == 1)
-	{
+	if (argc == 1) {
 		print_str_default();
 	}
-	else
-	{
-		for (int i = 1; argv[i]; ++i)
-		{
+	else {
+		for (int i = 1; argv[i]; ++i) {
 			print_str_upper(argv[i]);
 		}
 		std::cout << '\n';

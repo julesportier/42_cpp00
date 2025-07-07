@@ -17,17 +17,17 @@ static void	print_str_default()
 	std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
 }
 
-static char	*to_upper_str(char *str)
+static std::string	to_upper_str(std::string str)
 {
-	for (int i = 0; str[i] != '\0'; ++i) {
-		str[i] = toupper(str[i]);
+	for (std::string::iterator i = str.begin(); i != str.end(); ++i) {
+		*i = toupper(*i);
 	}
 	return (str);
 }
 
 static void	print_str_upper(char *str)
 {
-	std::cout << to_upper_str(str);
+	std::cout << to_upper_str(std::string(str));
 }
 
 int	main(int argc, char *argv[])

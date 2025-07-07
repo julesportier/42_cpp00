@@ -25,12 +25,12 @@ static std::string	to_upper_str(std::string str)
 	return (str);
 }
 
-static void	print_str_upper(char *str)
+static void	print_str_upper(char* str)
 {
 	std::cout << to_upper_str(std::string(str));
 }
 
-int	main(int argc, char *argv[])
+int	main(int argc, char** argv)
 {
 	if (argc == 1) {
 		print_str_default();

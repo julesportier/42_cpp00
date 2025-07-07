@@ -25,9 +25,9 @@ static std::string	to_upper_str(std::string str)
 	return (str);
 }
 
-static void	print_str_upper(char* str)
+static void	print_str_upper(std::string str)
 {
-	std::cout << to_upper_str(std::string(str));
+	std::cout << to_upper_str(str);
 }
 
 int	main(int argc, char** argv)
@@ -37,7 +37,7 @@ int	main(int argc, char** argv)
 	}
 	else {
 		for (int i = 1; argv[i]; ++i) {
-			print_str_upper(argv[i]);
+			print_str_upper(std::string(argv[i]));
 		}
 		std::cout << '\n';
 	}

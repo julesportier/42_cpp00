@@ -13,6 +13,16 @@
 #include <limits>
 #include <iostream>
 
+static void	print_error(std::string message)
+{
+	std::cerr << "Error " + message + '\n';
+}
+
+static void	print_str_default()
+{
+	std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
+}
+
 static bool	is_max_int(int i)
 {
 	if (i == std::numeric_limits<int>::max())
@@ -21,43 +31,51 @@ static bool	is_max_int(int i)
 		return (false);
 }
 
-static void	print_str_default()
-{
-	std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
-}
-
 static char	*to_upper_str(char *str)
 {
 	int	i = 0;
 
-	while (str[i] != '\0') {
+	while (str[i] != '\0')
+	{
 		if (is_max_int(i))
-			throw std::string("string too big");
+		{
+			print_error("string is too big");
+			return (NULL);
+		}
 		str[i] = toupper(str[i]);
 		++i;
 	}
 	return (str);
 }
 
-static void	print_str_upper(char *str)
+static int	print_str_upper(char *str)
 {
-	std::cout << to_upper_str(str);
+	str = to_upper_str(str);
+	if (!str)
+		return (-1);
+	std::cout << str;
+	return (0);
 }
 
 int	main(int argc, char *argv[])
 {
-	if (argc == 1)
-		print_str_default();
-	else {
-		for (int i = 1; argv[i]; ++i) {
-			try {
-				print_str_upper(argv[i]);
-			}
-			catch (std::string message) {
-				std::cout << "error " + message;
-			}
-		}
+	if (is_max_int(argc))
+	{
+		print_error("too much arguments");
+		return (-1);
 	}
-	std::cout << std::endl;
+	else if (argc == 1)
+	{
+		print_str_default();
+	}
+	else
+	{
+		for (int i = 1; argv[i]; ++i)
+		{
+			if (print_str_upper(argv[i]) == -1)
+				return (-1);
+		}
+		std::cout << '\n';
+	}
 	return (0);
 }

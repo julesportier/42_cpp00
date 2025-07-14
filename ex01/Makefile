@@ -28,7 +28,6 @@ BUILD_DIR := build
 OBJ := $(addprefix $(BUILD_DIR)/, $(SRC:.cpp=.o))
 
 DEP_FILES := $(OBJ:.o=.d)
--include $(DEP_FILES)
 
 ###########
 # TARGETS #
@@ -60,6 +59,7 @@ re: fclean all
 #########
 # RULES #
 #########
+-include $(DEP_FILES)
 
 $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) $^ -o $@

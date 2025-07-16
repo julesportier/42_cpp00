@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <iostream>
+#include <string>
 
 static void	print_str_default()
 {
@@ -19,8 +20,9 @@ static void	print_str_default()
 
 static std::string	to_upper_str(std::string str)
 {
-	for (std::string::iterator i = str.begin(); i != str.end(); ++i) {
-		*i = toupper(*i);
+	std::string::size_type str_size = str.size();
+	for (std::string::size_type i = 0; i < str_size; ++i) {
+		str[i] = toupper(str[i]);
 	}
 	return (str);
 }

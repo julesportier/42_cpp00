@@ -28,7 +28,9 @@ NAME := phonebook
 
 SRC_DIR := src
 vpath %.cpp $(SRC_DIR)
-SRC :=	phonebook.cpp
+SRC :=	main.cpp \
+		Contact.cpp \
+		PhoneBook.cpp
 
 BUILD_DIR := build
 OBJ := $(addprefix $(BUILD_DIR)/, $(SRC:.cpp=.o))

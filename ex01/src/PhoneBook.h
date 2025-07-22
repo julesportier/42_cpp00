@@ -13,7 +13,9 @@ private:
 	Contact contacts[8];
 	int update_contact_index(int contact_index);
 	std::string prompt_user(std::string prompt);
-	std::string prompt_phone_number(std::string prompt);
+	std::string prompt_string(std::string input);
+	bool validate_string(std::string input);
+	std::string prompt_phone_number(std::string input);
 	bool validate_phone_number(std::string input);
 };
 

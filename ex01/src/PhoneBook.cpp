@@ -39,6 +39,7 @@ void PhoneBook::search_contact()
 {
 	if (this->stored_contacts == 0) {
 		std::cout << "No saved contact\n";
+		return;
 	}
 	for (int i = 0; i < this->stored_contacts; ++i) {
 		PhoneBook::display_row(PhoneBook::contacts[i], i);

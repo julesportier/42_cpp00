@@ -33,6 +33,7 @@ void PhoneBook::add_contact()
 	contact_index = update_contact_index(contact_index);
 	if (this->stored_contacts < 8)
 		++this->stored_contacts;
+	std::cout << "Contact added\n";
 }
 
 void PhoneBook::search_contact()
@@ -139,7 +140,7 @@ int PhoneBook::update_contact_index(int contact_index)
 
 std::string PhoneBook::prompt_user(std::string prompt)
 {
-	std::cout << prompt << '\n';
+	std::cout << prompt;
 	std::string input;
 	std::getline(std::cin, input);
 	return (input);

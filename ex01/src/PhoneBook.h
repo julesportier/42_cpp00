@@ -17,7 +17,7 @@ private:
 	void display_field(std::string field);
 	void display_row(Contact contact, int id);
 	void display_column(std::string field);
-	bool validate_index(int index);
+	bool validate_index(std::string input);
 	int update_contact_index(int contact_index);
 	std::string prompt_user(std::string prompt);
 	std::string prompt_string(std::string input);

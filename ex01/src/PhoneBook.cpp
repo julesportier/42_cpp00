@@ -44,15 +44,13 @@ void PhoneBook::search_contact()
 	for (int i = 0; i < this->stored_contacts; ++i) {
 		PhoneBook::display_row(PhoneBook::contacts[i], i);
 	}
-	int index = 0;
+	std::string input;
 	do {
 		std::cout << "Prompt the index of the contact "
 			"you want do display: ";
-		std::string input;
 		std::getline(std::cin, input);
-		index = atoi(input.c_str());
-	} while (PhoneBook::validate_index(index) == false);
-	PhoneBook::display_contact(index);
+	} while (PhoneBook::validate_index(input) == false);
+	PhoneBook::display_contact(atoi(input.c_str()));
 }
 
 /******************
@@ -87,19 +85,18 @@ void PhoneBook::display_field(std::string field)
 	std::cout << field << '\n';
 }
 
-bool PhoneBook::validate_index(int index)
+bool PhoneBook::validate_index(std::string input)
 {
-	if (index > 7 || index + 1 > this->stored_contacts) {
-		std::cout << "Index is too big, "
-			"look in leftmost column\n";
+	if (input.size() != 1) {
 		return (false);
 	}
-	else if (index < 0) {
+	int index = atoi(input.c_str());
+	if (index < 0) {
 		std::cout << "Index must be a positive number\n";
 		return (false);
 	}
-	else if (index + 1 < this->stored_contacts) {
-		std::cout << "Index is too small, "
+	else if (index > 7 || index + 1 > this->stored_contacts) {
+		std::cout << "Index is too big, "
 			"look in leftmost column\n";
 		return (false);
 	}

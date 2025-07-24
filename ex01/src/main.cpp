@@ -22,9 +22,12 @@ static bool prompt_command(PhoneBook& phonebook)
 	else if (input == "EXIT") {
 		return (false);
 	}
-	else {
+	else if (!std::cin.eof()) {
 		std::cout << "Incorrect command\n";
 		display_commands();
+	}
+	else {
+		return (false);
 	}
 	return (true);
 }

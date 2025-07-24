@@ -30,6 +30,9 @@ void PhoneBook::add_contact()
 	contacts[contact_index].set_darkest_secret(
 		prompt_string("DARKEST SECRET: ")
 	);
+	if (std::cin.eof()) {
+		return;
+	}
 	contact_index = update_contact_index(contact_index);
 	if (this->stored_contacts < 8)
 		++this->stored_contacts;
@@ -50,6 +53,8 @@ void PhoneBook::search_contact()
 		std::cout << "Prompt the index of the contact "
 			"you want do display: ";
 		std::getline(std::cin, input);
+		if (std::cin.eof())
+			return;
 	} while (PhoneBook::validate_index(input) == false);
 	PhoneBook::display_contact(atoi(input.c_str()));
 }
@@ -140,6 +145,9 @@ int PhoneBook::update_contact_index(int contact_index)
 
 std::string PhoneBook::prompt_user(std::string prompt)
 {
+	if (std::cin.eof()) {
+		return ("");
+	}
 	std::cout << prompt;
 	std::string input;
 	std::getline(std::cin, input);
@@ -151,7 +159,8 @@ std::string PhoneBook::prompt_string(std::string prompt)
 	std::string input;
 	do {
 		input = prompt_user(prompt);
-	} while (PhoneBook::validate_string(input) == false);
+	} while (!std::cin.eof()
+			&& PhoneBook::validate_string(input) == false);
 	return (input);
 }
 
@@ -169,7 +178,8 @@ std::string PhoneBook::prompt_phone_number(std::string prompt)
 	std::string input;
 	do {
 		input = prompt_user(prompt);
-	} while (PhoneBook::validate_phone_number(input) == false);
+	} while (!std::cin.eof()
+			&& PhoneBook::validate_phone_number(input) == false);
 	return (input);
 }
 

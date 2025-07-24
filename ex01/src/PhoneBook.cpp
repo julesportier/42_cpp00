@@ -93,15 +93,13 @@ void PhoneBook::display_field(std::string field)
 
 bool PhoneBook::validate_index(std::string input)
 {
-	if (input.size() != 1) {
+	if (input.size() != 1 || input[0] < '0' || input[0] > '8') {
+		std::cout << "Index out of range, "
+			"look in leftmost column\n";
 		return (false);
 	}
 	int index = atoi(input.c_str());
-	if (index < 0) {
-		std::cout << "Index must be a positive number\n";
-		return (false);
-	}
-	else if (index > 7 || index + 1 > this->stored_contacts) {
+	if (index + 1 > this->stored_contacts) {
 		std::cout << "Index is too big, "
 			"look in leftmost column\n";
 		return (false);

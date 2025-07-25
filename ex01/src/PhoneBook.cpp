@@ -39,7 +39,7 @@ void PhoneBook::add_contact()
 	std::cout << "Contact added\n";
 }
 
-void PhoneBook::search_contact()
+void PhoneBook::search_contact() const
 {
 	if (this->stored_contacts == 0) {
 		std::cout << "No saved contact\n";
@@ -67,7 +67,7 @@ void PhoneBook::search_contact()
 /******************
 * PRIVATE METHODS *
 * ****************/
-void PhoneBook::display_contact(int index)
+void PhoneBook::display_contact(int index) const
 {
 	std::cout << "First name: ";
 	PhoneBook::display_field(
@@ -91,12 +91,12 @@ void PhoneBook::display_contact(int index)
 	);
 }
 
-void PhoneBook::display_field(std::string field)
+void PhoneBook::display_field(std::string field) const
 {
 	std::cout << field << '\n';
 }
 
-bool PhoneBook::validate_index(std::string input)
+bool PhoneBook::validate_index(std::string input) const
 {
 	if (input.size() != 1 || input[0] < '0' || input[0] > '8') {
 		std::cout << "Index out of range, "
@@ -112,8 +112,7 @@ bool PhoneBook::validate_index(std::string input)
 	return (true);
 }
 
-
-void PhoneBook::display_row(Contact contact, int id)
+void PhoneBook::display_row(Contact contact, int id) const
 {
 	char c[2];
 	sprintf(c, "%d", id);
@@ -125,7 +124,7 @@ void PhoneBook::display_row(Contact contact, int id)
 	std::cout << '\n';
 }
 
-void PhoneBook::display_column(std::string field)
+void PhoneBook::display_column(std::string field) const
 {
 	std::cout << std::setw(10) << std::setfill(' ');
 	std::cout << std::setiosflags(std::ios::right);
@@ -146,7 +145,7 @@ int PhoneBook::update_contact_index(int contact_index)
 	return (contact_index);
 }
 
-std::string PhoneBook::prompt_user(std::string prompt)
+std::string PhoneBook::prompt_user(std::string prompt) const
 {
 	if (std::cin.fail()) {
 		return ("");
@@ -164,7 +163,7 @@ std::string PhoneBook::prompt_user(std::string prompt)
 	return (input);
 }
 
-std::string PhoneBook::prompt_string(std::string prompt)
+std::string PhoneBook::prompt_string(std::string prompt) const
 {
 	std::string input;
 	do {
@@ -174,7 +173,7 @@ std::string PhoneBook::prompt_string(std::string prompt)
 	return (input);
 }
 
-bool PhoneBook::validate_string(std::string input)
+bool PhoneBook::validate_string(std::string input) const
 {
 	if (input.size() < 1) {
 		std::cerr << "You must type something!\n";
@@ -183,7 +182,7 @@ bool PhoneBook::validate_string(std::string input)
 	return (true);
 }
 
-std::string PhoneBook::prompt_phone_number(std::string prompt)
+std::string PhoneBook::prompt_phone_number(std::string prompt) const
 {
 	std::string input;
 	do {
@@ -193,7 +192,7 @@ std::string PhoneBook::prompt_phone_number(std::string prompt)
 	return (input);
 }
 
-bool PhoneBook::validate_phone_number(std::string input)
+bool PhoneBook::validate_phone_number(std::string input) const
 {
 	std::string::size_type input_size = input.size();
 	if (input_size != 10) {

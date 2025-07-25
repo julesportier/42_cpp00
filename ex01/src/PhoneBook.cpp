@@ -30,7 +30,7 @@ void PhoneBook::add_contact()
 	contacts[contact_index].set_darkest_secret(
 		prompt_string("DARKEST SECRET: ")
 	);
-	if (std::cin.eof()) {
+	if (std::cin.fail()) {
 		return;
 	}
 	contact_index = update_contact_index(contact_index);
@@ -53,8 +53,13 @@ void PhoneBook::search_contact()
 		std::cout << "Prompt the index of the contact "
 			"you want do display: ";
 		std::getline(std::cin, input);
-		if (std::cin.eof())
+		if (std::cin.fail()) {
+			if (!std::cin.eof()) {
+				std::cerr << "getline: cin error "
+					<< std::cin.rdstate() << "\n";
+			}
 			return;
+		}
 	} while (PhoneBook::validate_index(input) == false);
 	PhoneBook::display_contact(atoi(input.c_str()));
 }
@@ -143,12 +148,19 @@ int PhoneBook::update_contact_index(int contact_index)
 
 std::string PhoneBook::prompt_user(std::string prompt)
 {
-	if (std::cin.eof()) {
+	if (std::cin.fail()) {
 		return ("");
 	}
 	std::cout << prompt;
 	std::string input;
 	std::getline(std::cin, input);
+	if (std::cin.fail()) {
+		if (!std::cin.eof()) {
+			std::cerr << "getline: cin error "
+				<< std::cin.rdstate() << "\n";
+		}
+		return ("");
+	}
 	return (input);
 }
 
@@ -157,7 +169,7 @@ std::string PhoneBook::prompt_string(std::string prompt)
 	std::string input;
 	do {
 		input = prompt_user(prompt);
-	} while (!std::cin.eof()
+	} while (!std::cin.fail()
 			&& PhoneBook::validate_string(input) == false);
 	return (input);
 }
@@ -176,7 +188,7 @@ std::string PhoneBook::prompt_phone_number(std::string prompt)
 	std::string input;
 	do {
 		input = prompt_user(prompt);
-	} while (!std::cin.eof()
+	} while (!std::cin.fail()
 			&& PhoneBook::validate_phone_number(input) == false);
 	return (input);
 }

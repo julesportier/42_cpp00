@@ -5,10 +5,7 @@
 #include <cstdlib>
 #include "PhoneBook.h"
 
-PhoneBook::PhoneBook()
-{
-	this->stored_contacts = 0;
-}
+PhoneBook::PhoneBook() : stored_contacts(0) {};
 
 PhoneBook::~PhoneBook() {}
 

@@ -2,7 +2,7 @@
 #include <iostream>
 #include "PhoneBook.h"
 
-static void display_commands(void)
+static void display_commands()
 {
 	std::cout << "type 'ADD' to add a contact\n"
 		"type 'SEARCH' to search for a contact\n"

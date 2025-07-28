@@ -13,9 +13,9 @@ int Account::_totalNbWithdrawals = 0;
 static void print_timestamp()
 {
 	const int size = 20;
-	char str[20] = {0};
+	char str[size] = {0};
 	const std::time_t time = std::time(NULL);
-	std::strftime(str, 19, "[%Y%m%d_%H%M%S]", std::localtime(&time));
+	std::strftime(str, size - 1, "[%Y%m%d_%H%M%S]", std::localtime(&time));
 	std::cout << str;
 }
 

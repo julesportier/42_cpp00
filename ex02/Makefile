@@ -6,12 +6,10 @@ CXX = c++
 #########
 # FLAGS #
 #########
-LDFLAGS :=		-fuse-ld=lld
 STD_FLAGS :=	-std=c++98
 WARNINGS :=		-Wall -Werror -Wextra
 CXXFLAGS :=		$(STD_FLAGS) $(WARNINGS)
 CXXFLAGS_DB :=	$(STD_FLAGS) $(WARNINGS) -g3
-LDFLAGS_SA :=	-fuse-ld=lld
 CXXFLAGS_AS :=	$(STD_FLAGS) $(WARNINGS) -g3 \
 				-fsanitize=address
 CFLAGS_MUS :=	$(STD_FLAGS) $(WARNINGS) -g3 \
@@ -48,12 +46,10 @@ noerr: all
 
 asan: CXXFLAGS = $(CXXFLAGS_AS)
 asan: CXX = clang++
-asan: LDFLAGS = $(LDFLAGS_SA)
 asan: all
 
 musan: CXXFLAGS = $(CXXFLAGS_MUS)
 musan: CXX = clang++
-musan: LDFLAGS = $(LDFLAGS_SA)
 musan: all
 
 rel: CXXFLAGS = $(CXXFLAGS_REL)
@@ -74,7 +70,7 @@ re: fclean all
 -include $(DEP_FILES)
 
 $(NAME): $(OBJ)
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $^ -o $@
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
 $(BUILD_DIR)/%.o: %.cpp Makefile
 	$(CXX) $(CXXFLAGS) $(DEP_FLAGS) -c $< -o $@
